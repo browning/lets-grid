@@ -1,0 +1,87 @@
+<html>
+
+<head>
+<link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+<script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='drawapi.js') }}"></script>
+<script>
+
+grid = new Array(20);
+changed = new Array(20);
+for( i=0; i<20; i++) {
+	grid[i] = new Array(26);
+	changed[i] = new Array(26);
+}
+
+
+function draw_frame()
+{
+	for (x=0; x<20; x++) {
+		for (y=0; y<26; y++) {
+			if( changed[x][y]) {
+				draw(x,y,grid[x][y]);
+			}
+			changed[x][y] = false;
+		}
+	}
+}
+
+$( document ).ready(function() {
+	var worker = new Worker("{{url_for('static', filename='evalworker.js')}}");
+	worker.onmessage = function (event) {
+			for( i=0; i<event.data.length; i++) {
+				if (event.data[i].color == 'random') {
+					event.data[i].color = random_color();
+				}
+				if ( event.data[i].color != grid[event.data[i].x][event.data[i].y]) {
+					changed[event.data[i].x][event.data[i].y] = true;
+				}
+	  			grid[event.data[i].x][event.data[i].y] = event.data[i].color;
+  			}
+		};
+	setInterval(draw_frame, 50);
+
+
+	$("#codearea").keyup(function() {
+		//eval($("#codearea").val());
+		worker.terminate();
+		worker = new Worker("{{url_for('static', filename='evalworker.js')}}");
+		worker.onmessage = function (event) {
+			for( i=0; i<event.data.length; i++) {
+				if (event.data[i].color == 'random') {
+					event.data[i].color = random_color();
+				}
+				if ( event.data[i].color != grid[event.data[i].x][event.data[i].y]) {
+					changed[event.data[i].x][event.data[i].y] = true;
+				}
+	  			grid[event.data[i].x][event.data[i].y] = event.data[i].color;
+  			}
+		};
+		worker.postMessage($("#codearea").val());
+	});
+});
+</script>
+
+</head>
+
+<body background="{{ url_for('static', filename='ps_neutral.png') }}">
+<div class="container">
+	<div class="row">&nbsp</div>
+    <div class="row">
+    <div class="span6">
+    	<textarea id="codearea" style="width:400px; height:300px; font-family: Consolas,Courier,monospace;"></textarea>
+    	<div class="row">
+    </div>
+    </div>
+    <div class="span6">
+		{% for x in range(20) %}
+			{% for y in range(25) %}
+		  		<div id="grid_{{x}}_{{y}}" style="height:15px; width:15px; outline:#dddddd solid; float: left; outline-width: 1px; margin: 0px; padding:0px"></div>
+		  	{% endfor %}
+		  		<div id="grid_{{x}}_{{y}}" style="height:15px; width:15px; outline:#dddddd solid;outline-width: 1px; margin: 0px; padding:0px"></div>
+		{% endfor %}
+	</div>
+</div>
+</body>
+
+</html>
