@@ -26,10 +26,8 @@ function draw_frame()
 	}
 }
 
-$( document ).ready(function() {
-	var worker = new Worker("{{url_for('static', filename='evalworker.js')}}");
-	worker.onmessage = function (event) {
-			for( i=0; i<event.data.length; i++) {
+function webworker_callback(event) {
+	for( i=0; i<event.data.length; i++) {
 				if (event.data[i].color == 'random') {
 					event.data[i].color = random_color();
 				}
@@ -38,7 +36,11 @@ $( document ).ready(function() {
 				}
 	  			grid[event.data[i].x][event.data[i].y] = event.data[i].color;
   			}
-		};
+}
+
+$( document ).ready(function() {
+	var worker = new Worker("{{url_for('static', filename='evalworker.js')}}");
+	worker.onmessage = webworker_callback;
 	setInterval(draw_frame, 50);
 
 
@@ -46,17 +48,7 @@ $( document ).ready(function() {
 		//eval($("#codearea").val());
 		worker.terminate();
 		worker = new Worker("{{url_for('static', filename='evalworker.js')}}");
-		worker.onmessage = function (event) {
-			for( i=0; i<event.data.length; i++) {
-				if (event.data[i].color == 'random') {
-					event.data[i].color = random_color();
-				}
-				if ( event.data[i].color != grid[event.data[i].x][event.data[i].y]) {
-					changed[event.data[i].x][event.data[i].y] = true;
-				}
-	  			grid[event.data[i].x][event.data[i].y] = event.data[i].color;
-  			}
-		};
+		worker.onmessage = webworker_callback;
 		worker.postMessage($("#codearea").val());
 	});
 });
