@@ -8,7 +8,7 @@ def save_grid(js):
 	client = MongoClient()
 	db = client.grid_database
 	grids = db.grids
-	return grids.insert({'js': js})
+	return str(grids.insert({'js': js}))
 
 def load_grid(mongo_id):
 	client = MongoClient()

@@ -61,9 +61,14 @@ $( document ).ready(function() {
 	<div class="row">&nbsp</div>
     <div class="row">
     <div class="span6">
-    	<textarea id="codearea" style="width:400px; height:300px; font-family: Consolas,Courier,monospace;"></textarea>
+    	<form action="/save_grid" method="POST">
+    	<textarea id="codearea" name="codearea" style="width:400px; height:300px; font-family: Consolas,Courier,monospace;"></textarea>
     	<div class="row">
-    </div>
+    		<div class="span-6">
+    			<input type="submit" class="btn-large" value="Share your grid with others!" />
+			</div>    	
+    	</form>
+    	</div>
     </div>
     <div class="span6">
 		{% for x in range(20) %}
