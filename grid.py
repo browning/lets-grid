@@ -6,6 +6,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
+    response = make_response(render_template('main.html'))
+    response.headers['Content-Security-Policy'] =  "default-src: 'none'; script-src: 'self';"
+    return response
+
+@app.route("/create")
+def create():
     response = make_response(render_template('grid.html'))
     response.headers['Content-Security-Policy'] =  "default-src: 'none'; script-src: 'self';"
     return response

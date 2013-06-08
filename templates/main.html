@@ -60,13 +60,59 @@ $( document ).ready(function() {
 <body background="{{ url_for('static', filename='ps_neutral.png') }}">
 <div class="container">
 	<div class="row">&nbsp</div>
+	<div class="row">
+<center><h2>Learn programming with grids!</h2></center>
+</div>
     <div class="row">
     <div class="span6">
     	<form action="/save_grid" method="POST">
-    	<textarea id="codearea" name="codearea" style="width:400px; height:300px; font-family: Consolas,Courier,monospace;">{{usrjs}}</textarea>
+    	<textarea id="codearea" name="codearea" style="width:400px; height:300px; font-family: Consolas,Courier,monospace;">function Firework(x) {
+    this.x = x;
+    this.y = 19;
+    this.explode = false
+    this.ec = 0;
+}
+Firework.prototype.draw = function() {
+    if (this.explode) {
+draw(this.x+this.ec-1, this.y+this.ec-1, '');
+        draw(this.x, this.y-this.ec+1, '');
+        draw(this.x-this.ec+1, this.y, '');
+        draw(this.x-this.ec+1, this.y-this.ec+1, '');
+
+        if (this.ec == 3) {
+             return;
+        }
+        draw(this.x+this.ec, this.y+this.ec, 'random');
+        draw(this.x, this.y-this.ec, 'random');
+        draw(this.x-this.ec, this.y, 'random');
+        draw(this.x-this.ec, this.y-this.ec, 'random');
+    }
+    else {
+        draw(this.x, this.y+1, ''); 
+        draw(this.x, this.y);
+    }
+}
+Firework.prototype.move = function() {
+    if ( this.y == 6 ) {
+        this.explode = true;
+        this.ec = this.ec + 1;
+    }
+    else {
+        this.y = this.y - 1;
+    }
+}
+f=new Firework(Math.floor((Math.random()*13)+7));
+function displayLoop() {
+    f.move();
+    f.draw();
+    if ( f.ec == 3 ) {
+        f=new Firework(Math.floor((Math.random()*13)+7));
+    }
+}
+setInterval(displayLoop,300);
+</textarea>
     	<div class="row">
     		<div class="span-6">
-    			<input type="submit" class="btn-large" value="Share your grid with others!" />
 			</div>    	
     	</form>
     	</div>
@@ -79,7 +125,20 @@ $( document ).ready(function() {
 		  		<div id="grid_{{x}}_{{y}}" style="height:15px; width:15px; outline:#dddddd solid;outline-width: 1px; margin: 0px; padding:0px"></div>
 		{% endfor %}
 	</div>
+	
 </div>
+<div class="row">
+    <p style="font-family: Georgia; font-size: 16px;">'Lets Grid' is an online programming environment that is designed to get people into programming. I tried to strip away all of the complicated set-up that goes along with real-world programming and just give students the very basics they need to create cool things and share their creations with the world.</p>
+</div>
+<div class="row">
+    		<div class="span8"></div>
+    		<div class="span4">
+    			<a href="/create">
+    			<input type="submit" class="btn btn-success btn-large" value="Try it out ->" />
+    		</a>
+			</div>   
+</div> 
+</div>	
 </body>
 
 </html>

@@ -11,4 +11,13 @@ function draw(x,y,color) {
 	$("#grid_" + y + "_" + x).css('background-color', color);
 }
 
+function clear_grid() {
+
+	for (x=0; x<20; x++) {
+		for(y=0; y<25; y++) {
+			$("#grid_" + y + "_" + x).css('background-color', '');
+		}
+	}
+}
+
 

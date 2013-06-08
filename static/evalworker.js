@@ -19,6 +19,10 @@ function draw(x,y,color) {
 	messages.push({'x': x, 'y':y, 'color':color});
 }
 
+function clear_grid() {
+	messages.push({'x': 0, 'y':0, 'color':'clear'});
+}
+
 onmessage = function (oEvent) {
   eval(oEvent.data);
 };
