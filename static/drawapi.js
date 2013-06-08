@@ -8,7 +8,7 @@ function random_color() {
 function draw(x,y,color) {
 	color = typeof color !== 'undefined' ? color : 'black';
 	
-	$("#grid_" + x + "_" + y).css('background-color', color);
+	$("#grid_" + y + "_" + x).css('background-color', color);
 }
 
 
