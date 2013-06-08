@@ -43,6 +43,7 @@ $( document ).ready(function() {
 	worker.onmessage = webworker_callback;
 	setInterval(draw_frame, 50);
 
+	worker.postMessage($("#codearea").val());
 
 	$("#codearea").keyup(function() {
 		//eval($("#codearea").val());
