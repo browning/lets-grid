@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import render_template, make_response, request
+from flask import render_template, make_response, request, redirect, url_for
 import grid_data
 
 app = Flask(__name__)
@@ -20,7 +20,7 @@ def create():
 def save_grid():
 	js_code = request.form['codearea']
 	app_id = grid_data.save_grid(js_code)
-	return app_id
+	return redirect(url_for('show_grid', grid_id=app_id))
 
 @app.route("/grid/<grid_id>")
 def show_grid(grid_id):
