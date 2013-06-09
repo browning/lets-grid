@@ -92,6 +92,43 @@ $( document ).ready(function() {
 		{% endfor %}
 	</div>
 </div>
+{% if not usrjs %}
+<h3>Instructions: </h3>
+<div class="row">
+	<div class="span12">
+		<p>You can type your program into the box above and watch its effects on the grid. What you can create is only limited by your imagination. The grid is kind of like a graph from math class. It has x and y coordinates and each square is named by some x and some y ie (x,y). (0,0) is in the top left</p>
+	</div>
+</div>
+<br />
+<div class="row">
+	<div class="span6">
+		<div class="alert alert-info">draw(2,2);</div>
+	</div>
+	<div class="span6">
+		<p>This is the simplest grid command, if you type this into the box the square at (2,2) will be colored black. Play around with this, try to change the numbers and see what happens</p>
+	</div>
+</div>
+<div class="row">
+	<div class="span6">
+		<div class="alert alert-info">draw(2,5,'red');</div>
+	</div>
+	<div class="span6">
+		<p>Now add color!, this will cause the square at (2,5) to be colored red, try out some other color names and try out 'random' to see what it does!</p>
+	</div>
+</div>
+<div class="row">
+	<div class="span6">
+		<div class="alert alert-info">
+           for (x=0; x<10; x++) {
+			draw(x,x);
+		   } </div>
+	</div>
+	<div class="span6">
+		<p>Its just javascript, type in any javascript statements you want to create something neat</p>
+	</div>
+</div>
+{% endif %}
+</div>
 </body>
 
 </html>
