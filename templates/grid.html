@@ -59,7 +59,15 @@ $( document ).ready(function() {
 
 <body background="{{ url_for('static', filename='ps_neutral.png') }}">
 <div class="container">
-	<div class="row">&nbsp</div>
+	<div class="row">&nbsp{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert">
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}</div>
     <div class="row">
     <div class="span6">
     	<form action="/save_grid" method="POST">

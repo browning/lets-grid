@@ -1,8 +1,9 @@
 from flask import Flask
-from flask import render_template, make_response, request, redirect, url_for
+from flask import render_template, make_response, request, redirect, url_for, flash
 import grid_data
 
 app = Flask(__name__)
+app.secret_key = 'blablablabla'
 
 @app.route("/")
 def main():
@@ -20,6 +21,7 @@ def create():
 def save_grid():
 	js_code = request.form['codearea']
 	app_id = grid_data.save_grid(js_code)
+	flash('Copy the URL in the url bar to share your creation with friends')
 	return redirect(url_for('show_grid', grid_id=app_id))
 
 @app.route("/grid/<grid_id>")
