@@ -31,5 +31,11 @@ def show_grid(grid_id):
 	response.headers['Content-Security-Policy'] =  "default-src: 'none'; script-src: 'self';"
 	return response
 
+@app.route("/tutorials")
+def tutorials_list():
+    response = make_response(render_template('tutorials.html'))
+    response.headers['Content-Security-Policy'] =  "default-src: 'none'; script-src: 'self';"
+    return response
+
 if __name__ == "__main__":
     app.run(debug=True)

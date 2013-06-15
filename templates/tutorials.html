@@ -1,0 +1,32 @@
+<html>
+
+<head>
+<link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+<script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+
+<script>
+
+</script>
+
+</head>
+
+<body background="{{ url_for('static', filename='ps_neutral.png') }}">
+<div class="container">
+	<div class="row">
+<h3>List of tutorials: </h3>
+</div>
+<div class="row">
+	<div class="span12">
+		<a href="/tutorials/basics">Basics</a><br />
+		<a href="/tutorials/variables">Variables</a><br />
+		<a href="/tutorials/functions">Functions</a><br />
+		<a href="/tutorials/if-statements">IF statements</a><br />
+		<a href="/tutorials/loops">Loops</a><br />
+		<a href="/tutorials/objects">Objects</a><br />
+		<a href="/tutorials/advanced">Advanced</a><br />
+		<a href="/tutorials/resources">Where to go from here</a><br />
+	</div>
+</div>
+</body>
+
+</html>
