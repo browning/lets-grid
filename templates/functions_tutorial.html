@@ -1,0 +1,31 @@
+{% extends "tutorial_layout.html" %}
+{% block code %}
+// Functions are a block of code
+// that you can call and re-use
+
+// here is an example of a function 
+// that draws a block of 4 blocks at 
+// once
+
+function block(x,y) {
+	draw(x,y);
+	draw(x+1,y);
+	draw(x, y+1);
+	draw(x+1,y+1);
+}
+
+// the name of this function is block
+// it takes 2 values ( an x and a y)
+// it then draws at x,y and 3 adjacent
+// spaces.
+
+// by itself this code does nothing
+
+// but... we can now call the block
+// function to draw blocks
+// like so...
+
+block(0,0);
+block(9,9);
+
+{% endblock %}
