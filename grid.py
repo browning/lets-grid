@@ -8,13 +8,13 @@ app.secret_key = 'blablablabla'
 @app.route("/")
 def main():
     response = make_response(render_template('main.html'))
-    response.headers['Content-Security-Policy'] =  "default-src: 'none'; script-src: 'self';"
+    response.headers['Content-Security-Policy'] =  "img-src 'self'; frame-src 'self'; media-src 'self'"
     return response
 
 @app.route("/create")
 def create():
     response = make_response(render_template('grid.html'))
-    response.headers['Content-Security-Policy'] =  "default-src: 'none'; script-src: 'self';"
+    response.headers['Content-Security-Policy'] =  "img-src 'self'; frame-src 'self'; media-src 'self'"
     return response
 
 @app.route("/save_grid", methods=["POST"])
@@ -28,13 +28,13 @@ def save_grid():
 def show_grid(grid_id):
     js_data = grid_data.load_grid(grid_id)
     response = make_response(render_template('grid.html', usrjs=js_data))
-    response.headers['Content-Security-Policy'] =  "default-src: 'none'; script-src: 'self';"
+    response.headers['Content-Security-Policy'] =  "img-src 'self'; frame-src 'self'; media-src 'self'"
     return response
 
 @app.route("/tutorials")
 def tutorials_list():
     response = make_response(render_template('tutorials.html'))
-    response.headers['Content-Security-Policy'] =  "default-src: 'none'; script-src: 'self';"
+    response.headers['Content-Security-Policy'] =  "img-src 'self'; frame-src 'self'; media-src 'self'"
     return response
 
 @app.route("/tutorials/<tutorial_name>")
@@ -53,7 +53,7 @@ def show_tutorial(tutorial_name):
         response = make_response(render_template('advanced_tutorial.html'))
     elif tutorial_name == "resources":
         response = make_response(render_template('resources_tutorial.html'))
-    response.headers['Content-Security-Policy'] =  "default-src: 'none'; script-src: 'self';"
+    response.headers['Content-Security-Policy'] =  "img-src 'self'; frame-src 'self'; media-src 'self'"
     return response
 
 
