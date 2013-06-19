@@ -49,9 +49,7 @@ def show_tutorial(tutorial_name):
         response = make_response(render_template('if_tutorial.html'))
     elif tutorial_name == "loops":
         response = make_response(render_template('loops_tutorial.html'))
-    elif tutorial_name == "objects":
-        response = make_response(render_template('objects_tutorial.html'))
-    elif tutorial_name == "advcanced":
+    elif tutorial_name == "advanced":
         response = make_response(render_template('advanced_tutorial.html'))
     elif tutorial_name == "resources":
         response = make_response(render_template('resources_tutorial.html'))

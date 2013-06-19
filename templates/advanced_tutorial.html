@@ -1,0 +1,22 @@
+{% extends "tutorial_layout.html" %}
+{% block code %}
+// One advanced trick out there 
+// that we use on the front page
+// is the setInterval command
+
+// set interval will run a
+// function you want every time 
+// at a set interval
+
+
+// Lets create a function that 
+// draws a random block
+function random_draw() {
+	draw(Math.floor(Math.random()*13), Math.floor(Math.random()*13+7));
+}
+
+// now tell it to run that function every
+// 1000 milliseconds (ie 1 second)
+setInterval(random_draw,1000);
+
+{% endblock %}

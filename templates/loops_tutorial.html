@@ -1,0 +1,34 @@
+{% extends "tutorial_layout.html" %}
+{% block code %}
+// Loops are ways to run 
+// code multiple times
+
+// Lets say we want to 
+// draw a line of blocks.
+// We can use a for loop like
+// this
+
+for(i=0; i<5; i++) {
+	draw(0,i);
+}
+
+// this means that we run the 
+// code inside of {} some 
+// number of times.
+// We initialize i to 0.
+// Every time through the 
+// loop we increase i by 1
+// thats what i++ does
+// We keep running the loop
+// until i is greater than 5
+// thats what i<5 does
+
+// Also you can do the same 
+// thing with a while loop
+i=0;
+while(i<5){
+	draw(i,0);
+	i=i+1
+}
+
+{% endblock %}

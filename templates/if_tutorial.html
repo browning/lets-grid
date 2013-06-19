@@ -1,0 +1,43 @@
+{% extends "tutorial_layout.html" %}
+{% block code %}
+// If statements are another 
+// common thing you will see in 
+// programming.
+
+// They let you choose different 
+// outcomes for your code based 
+// on the various values
+// for example:
+
+if ( 2 == 3) {
+	draw(0,0);
+}
+
+// Obviously 2 does not 
+// equal 3 so nothing will 
+// happen here.
+
+// Note that you need 2 equal 
+// signs for a comparison
+// Also its best to wrap the code 
+// inside the if in those 
+// curly brackets {}
+
+// Also if statements can have 
+// an else associated with them
+// for example
+
+if ( 2==3) {
+	draw(0,0);
+}
+else {
+	draw(10,10);
+}
+
+// As you can see , 
+// since 2 doesnt equal 3
+// the else will trigger and a
+// square will be drawn 
+// on (10,10)
+
+{% endblock %}
